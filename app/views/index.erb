@@ -6,7 +6,7 @@
     <th>Participants</th>
     <% @surveys.each do |s| %>
     <tr>
-      <td><a href="/"><%= s.title %></a></td>
+      <td><a href="/survey/<%=s.id%>"><%= s.title %></a></td>
       <td><%= s.created_at.to_date %></td>
       <td><%= s.creator.username %></td>
       <td><%= s.participants.count %></td>

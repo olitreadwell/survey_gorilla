@@ -1,7 +1,11 @@
 get '/' do
-  # Look in app/views/index.erb
-  # session[:user_id] = nil
+  @surveys = Survey.all
+
   erb :index
+end
+
+get '/survey/new' do
+  erb :new_survey
 end
 
 post '/login' do
@@ -12,7 +16,6 @@ post '/login' do
   end
   redirect to '/'
 end
-
 
 post '/register' do
   user = User.new(params[:user])
@@ -36,13 +39,3 @@ get '/logout' do
   puts "logged out"
   redirect to '/'
 end
-
-# <form method='post' action='/register'>
-#   <label for='usernameInput'>Enter username: </label>
-#   <input id='usernameInput' type='text' name='user[username]'>
-#   <label for='userEmailInput'>Enter email: </label>
-#   <input id='userEmailInput' type='email' name='user[email]'>
-#   <label for='userPassword'>Enter password: </label>
-#   <input id='userPassword' type='password' name='user[password]'>
-#   <input type='submit' value='Register'>
-# </form>

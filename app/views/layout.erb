@@ -15,22 +15,26 @@
 
   <title>Survey G0rilla</title>
 </head>
+<body>
   <div class="nav">
     <a href="/">Home</a>
-    <a href="/logout">Log Out</a>
-    <a href="/survey/new">Create Survey</a>
-  <form method='post' action='/login'>
-   <label for='usernameInputHomePage'>Username: </label>
-   <input id='usernameInputHomePage' type='text' name='username'>
-   <label for='userPasswordHomePage'>Password: </label>
-   <input id='userPassword'HomePage type='password' name='password'>
-   <input type='submit' value='Login'>
-</form>
-    <!-- <a href="/login">Log In</a> -->
+    <%# if current_user.id == session[:user_id]  %>
+      <a href="/logout">Log Out</a>
+      <a href="/user/<%#= current_user.id %>">Profile</a>
+      <a href="/survey/new">Create Survey</a>
+    <%# else %>
+    <form method='post' action='/login'>
+     <label for='usernameInputHomePage'>Username: </label>
+     <input id='usernameInputHomePage' type='text' name='username'>
+     <label for='userPasswordHomePage'>Password: </label>
+     <input id='userPassword'HomePage type='password' name='password'>
+     <input type='submit' value='Login'>
+    </form>
     <a href="/register">Sign Up</a>
+    <%# end %>
   </div>
-<body>
   <div class="container">
+    <h1>Survey G0rilla.</h1>
   <%= yield %>
   </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

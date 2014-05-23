@@ -4,14 +4,10 @@ get '/' do
   erb :index
 end
 
-get '/survey/new' do
-  erb :new_survey
-end
-
 post '/login' do
   user = User.authenticate(params[:username], params[:password])
   if user
-    session[:user_id]
+    session[:user_id] = user.id
     puts "successful login"
   end
   redirect to '/'

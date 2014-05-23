@@ -4,12 +4,12 @@ end
 
 post '/survey/new' do
   @survey = Survey.create(title: params[:title])
-  @survey.questions << Question.create(question_text: params[:question])
 
-  redirect to "/survey/#{@survey.id}"
+  redirect to "/survey/#{@survey.id}/question/new"
 end
 
-get '/survey/:id' do
+get '/survey/:id/question/new' do
+  @survey.questions << Question.create(question_text: params[:question])
   # erb :
   "Hello world"
 end

@@ -9,7 +9,9 @@ post '/survey/new' do
 end
 
 get '/survey/:id/question/new' do
-  @survey.questions << Question.create(question_text: params[:question])
+  @question = Question.create(question_text: params[:question])
+  @survey.questions << @question
+  #@question = ResponseOption.create()
   # erb :
   "Hello world"
 end
@@ -19,5 +21,7 @@ get '/survey/:id' do
   erb :'survey/show'
 end
 
-post '/survey/:id/submit' do
+post '/survey/:id/question/:q_id/submit' do
+  @user_answer = UserAnswer.create(question_id: params[:q_id], answer_content: params[:response])
+  redirect to #"/survey/#{params[:id]}/question/#{params[:q_id].to_i + 1 }"
 end

@@ -1,5 +1,5 @@
-cyn = User.create(username: "cyn", email: "cyn@cyn.com")
-akd = User.create(username: "akd", email: "akd@cyn.com")
+cyn = User.create(username: "cyn", email: "cyn@cyn.com", password:"password")
+akd = User.create(username: "akd", email: "akd@cyn.com", password:"password")
 survey = Survey.create(title: "Your mom is cute", creator_id: 1)
 survey.participants << akd
 q = Question.create(survey_id: 1, question_text: "I think she is, do you agree?")

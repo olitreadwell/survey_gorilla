@@ -1,0 +1,61 @@
+<!-- name -->
+<div>
+  <span>Your username:</span>
+  <span><%= @user.username %></span>
+</div>
+<!-- created at -->
+<div>
+  <span>User created on:</span>
+  <span><%= @user.created_at %></span>
+</div>
+<!-- surveys created -->
+<div>
+  <div>
+    <span>Total Surveys Created:</span>
+    <span><%= @user.surveys.length %></span>
+  </div>
+  <table>
+    <caption><%= @user.username %>'s Created Surveys</caption>
+    <th>Survey Title</th>
+    <th>Created At</th>
+    <th>Number of Questions</th>
+    <th>Number of Survey Participants</th>
+    <% if @user.surveys.length > 0 %>
+      <% @user.surveys.each do |created_surveys|%>
+        <td><%= created_surveys.title %></td>
+        <td><%= created_surveys.created_at %></td>
+        <td><%= created_surveys.questions.length %></td>
+        <td><%= created_surveys.participations.length %></td>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+<!-- surveys responded to -->
+  <!-- total surveys responded to -->
+
+<div>
+<div>
+  <span>Total Surveys Responded to:</span>
+  <span><%= @user.participations.length %></span>
+</div>
+  <table>
+    <caption><%= @user.username %>'s Survey Participations</caption>
+    <th>Survey Title</th>
+    <th>Created At</th>
+    <th>Number of Questions</th>
+    <th>Number of Survey Participants</th>
+    <% if @user.surveys.length > 0 %>
+      <% @user.surveys.each_with_index do |created_surveys, index|%>
+        <%if index < 5 %>
+          <td><%= created_surveys.title %></td>
+          <td><%= created_surveys.created_at %></td>
+          <td><%= created_surveys.questions.length %></td>
+          <td><%= created_surveys.participations.length %></td>
+        <%end%>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+  <!-- surveys responded to limit 5 -->
+    <!-- surveys name -->
+    <!-- surveys total respondents -->

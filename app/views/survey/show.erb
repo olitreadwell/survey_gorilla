@@ -1,7 +1,8 @@
 <h2><%= @survey.title %></h2>
-<form action="/survey/<%= @survey.id%>/submit" method="post">
-<% @survey.questions.each do |q| %>
-  <p><%=q.question_text%></p><input type="text" name="response">
-<%end%>
-<input type="submit" value="Submit that form!">
+<%= @survey.questions.first.question_text %>
+<form action="/survey/<%= @survey.id %>" method="post">
+  <p><input type="text" name="response"></p>
+  <input type="submit" value="Submit that form!">
 </form>
+
+

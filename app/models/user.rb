@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, length: { minimum: 6 }
 
   has_many :participations # a user will have many surveys they have participated in
+  has_many :surveys, through: :participations
 
   has_many :created_surveys,
            class_name: "Survey",
@@ -23,8 +25,8 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def self.authenticate(email, password)
-    user = User.find_by_email(email)
+  def self.authenticate(username, password)
+    user = User.find_by_username(username)
     if user && user.password == password
       user
     else

@@ -18,13 +18,19 @@
 <body>
   <div class="nav">
     <a href="/">Home</a>
-    <%# if current_user.id == session[:id]  %>
+    <%# if current_user.id == session[:user_id]  %>
       <a href="/logout">Log Out</a>
       <a href="/user/<%#= current_user.id %>">Profile</a>
       <a href="/survey/new">Create Survey</a>
     <%# else %>
-      <a href="/login">Log In</a>
-      <a href="/register">Sign Up</a>
+    <form method='post' action='/login'>
+     <label for='usernameInputHomePage'>Username: </label>
+     <input id='usernameInputHomePage' type='text' name='username'>
+     <label for='userPasswordHomePage'>Password: </label>
+     <input id='userPassword'HomePage type='password' name='password'>
+     <input type='submit' value='Login'>
+    </form>
+    <a href="/register">Sign Up</a>
     <%# end %>
   </div>
   <div class="container">

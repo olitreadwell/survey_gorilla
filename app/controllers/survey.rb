@@ -4,7 +4,7 @@ end
 
 post '/survey/new' do
   @survey = Survey.create(title: params[:title])
-
+  current_user.created_surveys << @survey
   redirect to "/survey/#{@survey.id}/question/new"
 end
 
@@ -14,6 +14,10 @@ get '/survey/:id/question/new' do
   "Hello world"
 end
 
-get '/survey/:id/take' do
+get '/survey/:id' do
+  @survey = Survey.find_by_id(params[:id])
   erb :'survey/show'
+end
+
+post '/survey/:id/submit' do
 end

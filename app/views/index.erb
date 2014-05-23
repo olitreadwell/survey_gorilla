@@ -1,22 +1,16 @@
-  <h1>Survey Gorilla.</h1>
-
-
+<h2>ALL OF THE SURV3YS.</h2>
   <table>
+    <th>Survey Name</th>
+    <th>Date</th>
+    <th>Creator</th>
+    <th>Participants</th>
+    <% @surveys.each do |s| %>
     <tr>
-      <th>File Description</th>
-      <th>File Location</th>
+      <td><a href="/"><%= s.title %></a></td>
+      <td><%= s.created_at.to_date %></td>
+      <td><%= s.creator.username %></td>
+      <td><%= s.participants.count %></td>
     </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
+    <% end %>
   </table>
 

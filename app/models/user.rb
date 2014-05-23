@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
 
   has_many :participations # a user will have many surveys they have participated in
+  has_many :surveys, :through => :participations
 
   has_many :created_surveys,
            class_name: "Survey",

@@ -1,3 +1,5 @@
+<h1>Add a Question</h1>
+<p>Title: <%= @survey.title %></p>
 <form method="post" action="/survey/<%= @survey.id %>/question/new">
   <!-- <label for='surveyTitleInput'>Enter Survey Title: </label>
   <input id='surveyTitleInput' type="text" name="title" placeholder='Survey Title'><br> -->
@@ -6,6 +8,6 @@
   <input type="submit" name="submit" value="Add Question">
 </form>
 
-
-<div>If you don't want to add the above question, view your survey below</div>
-  <a href="/survey/<%= @survey.id %>">take your survey</a>
+<p>Finished?</p>
+<p><a href="/">See your survey on the home page</a></p>
+<p><a href="/survey/<%= @survey.id %>">See your survey from a user's perspective</a></p>

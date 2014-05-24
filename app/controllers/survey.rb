@@ -4,6 +4,7 @@ get '/survey/new' do #create new survey
 end
 
 post '/survey/new' do #submit new survey
+<<<<<<< HEAD
   @survey = Survey.create(title: params[:title], creator_id: session[:user_id])
   # @question = Question.create(question_text: params[:question])
   # @survey.questions << @question
@@ -30,7 +31,7 @@ end
 ###TAKING SURVEY
 get '/survey/:survey_id' do #take survey
   @survey = Survey.find_by_id(params[:survey_id])
-  @questions = Question.find_by_id(1)
+  @questions = @survey.questions
   erb :'survey/show'
 end
 
@@ -45,6 +46,7 @@ post '/survey/:survey_id' do
   current_user.surveys << @survey
   redirect to '/'
 end
+
 ### MULTI-QUESTION SURVEY
 # get 'survey/:id/question/:q_id' do
 #  puts  "Hello"
@@ -55,4 +57,3 @@ end
 
 # end
   # redirect to "/survey/#{params[:id]}/question/#{params[:q_id].to_i + 1 }"
-

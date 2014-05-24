@@ -1,1 +1,11 @@
-NEW QUESTION
+<form method="post" action="/survey/<%= @survey.id %>/question/new">
+  <!-- <label for='surveyTitleInput'>Enter Survey Title: </label>
+  <input id='surveyTitleInput' type="text" name="title" placeholder='Survey Title'><br> -->
+  <label for='surveyQuestionInput'>Enter Survey Question: </label>
+  <input id='surveyQuestionInput' type="text" name="question" placeholder='Survey Question'><br>
+  <input type="submit" name="submit" value="Add Question">
+</form>
+
+
+<div>If you don't want to add the above question, view your survey below</div>
+  <a href="/survey/<%= @survey.id %>">take your survey</a>

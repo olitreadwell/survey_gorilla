@@ -4,44 +4,45 @@ get '/survey/new' do #create new survey
 end
 
 post '/survey/new' do #submit new survey
-  survey = Survey.create(title: params[:title], creator_id: session[:user_id])
-  question = Question.create(question_text: params[:question])
-  survey.questions << question
+  @survey = Survey.create(title: params[:title], creator_id: session[:user_id])
+  # @question = Question.create(question_text: params[:question])
+  # @survey.questions << @question
 
-  current_user.created_surveys << survey
-  # p current_user.created_surveys
-  redirect to '/'#{}"/survey/#{@survey.id}/question/new"
+  current_user.created_surveys << @survey
+  redirect to "/survey/#{@survey.id}/question/new"
 end
 
-# get '/survey/:id/question/new' do #create new question
+get '/survey/:survey_id/question/new' do #create new question
+  @survey = Survey.find_by_id(params[:survey_id])
+  erb :'survey/new_question'
+end
 
-#   erb :'survey/new_question'
-# end
+post '/survey/:survey_id/question/new' do #submit new question
+  @survey = Survey.find_by_id(params[:survey_id])
+  @question = Question.create(question_text: params[:question])
+  @survey.questions << @question
+  @response = ResponseOption.create!(choice_text: "something")
+  @question.response_options << @response
 
-# post '/survey/:id/question/new' do #submit new question
-#   @survey = Survey.find_by_id(params[:id])
-#   @question = Question.create(question_text: params[:question])
-#   @survey.questions << @question
-#   @response = ResponseOption.create(question_id: @question.id)
-#   @question.responses << @response
-
-#   redirect to "/survey/#{@survey.id}/question/new"
-# end
+  redirect to "/survey/#{@survey.id}/question/new"
+end
 
 ###TAKING SURVEY
-get '/survey/:id' do #take survey
-  @survey = Survey.find_by_id(params[:id])
-  @question = Question.find_by_id(1)
+get '/survey/:survey_id' do #take survey
+  @survey = Survey.find_by_id(params[:survey_id])
+  @questions = Question.find_by_id(1)
   erb :'survey/show'
 end
 
-post '/survey/:id' do
-  survey = Survey.find_by_id(params[:id])
-  question = Question.find_by_id(1)
-  question.response_options << ResponseOption.create()
-  response_option = question.response_options.last
-  response = UserAnswer.create(user_id: current_user.id, response_option_id: response_option.id, answer_content: params[:response])
-  current_user.surveys << survey
+post '/survey/:survey_id' do
+  @survey = Survey.find_by_id(params[:survey_id])
+  #loop things here
+  @question = Question.find_by_id(1)
+  # @response_option = @question.response_options.last
+  @response = UserAnswer.create(user_id: current_user.id,
+                               response_option_id: @response_option.id,
+                               answer_content: params[:response])
+  current_user.surveys << @survey
   redirect to '/'
 end
 ### MULTI-QUESTION SURVEY

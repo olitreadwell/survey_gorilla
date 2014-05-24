@@ -20,12 +20,10 @@
     <th>Created At</th>
     <th>Number of Questions</th>
     <th>Number of Survey Participants</th>
-    <% if @user.surveys.length > 0 %>
-      <% @user.surveys.each do |created_surveys|%>
-        <td><%= created_surveys.title %></td>
-        <td><%= created_surveys.created_at %></td>
-        <td><%= created_surveys.questions.length %></td>
-        <td><%= created_surveys.participations.length %></td>
+    <% if @user.created_surveys.length > 0 %>
+      <% @user.created_surveys.each do |created_survey|%>
+        <%= erb :'partials/_profile_table_format',
+            :locals => {:created_survey => created_survey} %>
       <% end %>
     <% end %>
   </table>
@@ -45,12 +43,10 @@
     <th>Number of Questions</th>
     <th>Number of Survey Participants</th>
     <% if @user.surveys.length > 0 %>
-      <% @user.surveys.each_with_index do |created_surveys, index|%>
+      <% @user.surveys.each_with_index do |created_survey, index|%>
         <%if index < 5 %>
-          <td><%= created_surveys.title %></td>
-          <td><%= created_surveys.created_at %></td>
-          <td><%= created_surveys.questions.length %></td>
-          <td><%= created_surveys.participations.length %></td>
+          <%= erb :'partials/_profile_table_format',
+             :locals => {:created_survey => created_survey} %>
         <%end%>
       <% end %>
     <% end %>

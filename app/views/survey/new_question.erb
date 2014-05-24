@@ -1,1 +1,9 @@
-NEW QUESTION
+<h1>Add a Question</h1>
+<p>Title: <%= @survey.title %></p>
+<form method="post" action="/survey/<%= @survey.id %>/question/new">
+  <input type="text" name="question"><br>
+  <input type="submit" name="make_question" value="Add a Question">
+</form>
+<p>Finished?</p>
+<p><a href="/">See your survey on the home page</a></p>
+<p><a href="/survey/<%= @survey.id %>">See your survey from a user's perspective</a></p>

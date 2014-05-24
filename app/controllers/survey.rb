@@ -4,29 +4,54 @@ get '/survey/new' do #create new survey
 end
 
 post '/survey/new' do #submit new survey
-<<<<<<< HEAD
   @survey = Survey.create(title: params[:title], creator_id: session[:user_id])
-  # @question = Question.create(question_text: params[:question])
-  # @survey.questions << @question
-
   current_user.created_surveys << @survey
-  redirect to "/survey/#{@survey.id}/question/new"
+
+  content_type :JSON
+  @survey.to_json
 end
 
 get '/survey/:survey_id/question/new' do #create new question
   @survey = Survey.find_by_id(params[:survey_id])
-  erb :'survey/new_question'
+  erb :'survey/new_question', :layout => false
 end
 
 post '/survey/:survey_id/question/new' do #submit new question
   @survey = Survey.find_by_id(params[:survey_id])
-  @question = Question.create(question_text: params[:question])
+  @question = Question.create(question_text: params[:question_text])
   @survey.questions << @question
-  @response = ResponseOption.create!(choice_text: "something")
-  @question.response_options << @response
+  @response_options = ResponseOption.create!(choice_text: "something")
+  @question.response_options << @response_options
 
-  redirect to "/survey/#{@survey.id}/question/new"
+  puts @question
+  content_type :JSON
+    @question.to_json
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ###TAKING SURVEY
 get '/survey/:survey_id' do #take survey
@@ -44,7 +69,7 @@ post '/survey/:survey_id' do
                                response_option_id: @response_option.id,
                                answer_content: params[:response])
   current_user.surveys << @survey
-  redirect to '/'
+
 end
 
 ### MULTI-QUESTION SURVEY
@@ -57,3 +82,8 @@ end
 
 # end
   # redirect to "/survey/#{params[:id]}/question/#{params[:q_id].to_i + 1 }"
+
+# ~> NoMethodError
+# ~> undefined method `get' for main:Object
+# ~>
+# ~> /Users/apprentice/Desktop/gorilla/app/controllers/survey.rb:2:in `<main>'

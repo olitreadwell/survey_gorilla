@@ -1,11 +1,22 @@
 <h1>Make Your Very Own Survey!</h1>
 
-<form method="post" action="/survey/new">
-  <label for='surveyTitleInput'>Enter Survey Title: </label>
-  <input id='surveyTitleInput' type="text" name="title" placeholder='Survey Title'><br>
+<div id="create_survey">
+<form id="new_survey" method="post" action="/survey/new">
+  <label >Enter Survey Title:
+  <input  type="text" name="title" placeholder='Survey Title'><br></label>
+
+  <input type="submit" name="add_question" value="create survey">
+</div>
+</form>
+
+
+
+
+
+
+
+
   <!-- <label for='surveyQuestionInput'>Enter Survey Question: </label>
   <input id='surveyQuestionInput' type="text" name="question" placeholder='Survey Question'><br> -->
   <!-- Response: <input type="text" name="response"><br> -->
   <!-- <textarea></textarea><br> -->
-  <input type="submit" name="add_question" value="Add Question">
-</form>

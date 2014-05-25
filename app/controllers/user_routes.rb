@@ -34,3 +34,14 @@ get '/user/:id' do
   current_user
   erb :profile
 end
+
+get '/survey/results/:id' do
+@survey = Survey.find_by_id(:params[:id])
+# @question = Question.find_by_id(params[:id])
+# p @question
+  erb :survey_results
+end
+
+# get '/user/survey/1/results' do
+#   "Hello World"
+# end

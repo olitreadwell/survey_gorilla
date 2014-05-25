@@ -1,5 +1,5 @@
 <tr>
-  <td><%= created_survey.title %></td>
+  <td><a href="/survey/results/<%=created_survey.id%>"><%= created_survey.title %></a></td>
   <td><%= created_survey.created_at %></td>
   <td><%= created_survey.questions.length %></td>
   <td><%= created_survey.participations.length %></td>

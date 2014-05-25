@@ -52,6 +52,8 @@ end
 
 
 
+
+
 ###TAKING SURVEY
 get '/survey/:survey_id' do #take survey
   @survey = Survey.find_by_id(params[:survey_id])

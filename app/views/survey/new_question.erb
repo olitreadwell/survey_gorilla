@@ -1,13 +1,13 @@
+<div id="new_question">
 <h3>Add a Question</h3>
-<div>
-  <form id="new_question" method="post" action="/survey/<%= @survey.id %>/question/new">
+  <form id="new_question_form" method="post" action="/survey/<%= @survey.id %>/question/new">
     <!-- <label for='surveyTitleInput'>Enter Survey Title: </label>
     <input id='surveyTitleInput' type="text" name="title" placeholder='Survey Title'><br> -->
-    <label for='surveyQuestionInput'>Enter Survey Question: </label>
-    <input id='surveyQuestionInput' type="text" name="question_text" placeholder='Survey Question'><br>
+    <div><label>Enter Survey Question:
+    <input id='surveyQuestionInput' type="text" name="question_text" placeholder='Survey Question'></label></div>
     <input type="submit" name="submit" value="Add Question">
   </form>
-</div>
 <p>Finished?</p>
 <p><a href="/">See your survey on the home page</a></p>
 <p><a href="/survey/<%= @survey.id %>">See your survey from a user's perspective</a></p>
+</div>

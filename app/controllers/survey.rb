@@ -23,7 +23,6 @@ post '/survey/:survey_id/question/new' do #submit new question
   @response_options = ResponseOption.create!(choice_text: "something")
   @question.response_options << @response_options
 
-  puts @question
   content_type :JSON
     @question.to_json
 end

@@ -47,9 +47,11 @@ $(document).ready(function() {
     $("#new_question_form").remove();
     $.post(newQuestionUrl, newQuestionData, function(response){
       $("#new_question").remove();
+      console.log(response);
       var question = new Question(response.question.survey_id,
                                   response.question.question_text,
                                   response.question.id);
+      $("#create_survey").append("<h4>- "+question.questionText+"</h4>")
       Survey.addQuestion(question);
       Survey.getQuestionForm();
     },"json");

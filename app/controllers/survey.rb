@@ -60,15 +60,27 @@ get '/survey/:survey_id' do #take survey
 end
 
 post '/survey/:survey_id' do
-  @survey = Survey.find_by_id(params[:survey_id])
-  #loop things here
-  @question = Question.find_by_id(1)
-  # @response_option = @question.response_options.last
-  @response = UserAnswer.create(user_id: current_user.id,
-                               response_option_id: @response_option.id,
-                               answer_content: params[:response])
-  current_user.surveys << @survey
+  survey = Survey.find_by_id(params[:survey_id])
 
+  puts params
+  #loop things here
+  params[:id].each do |index, id|
+    question = Question.find_by_id(id)
+    response_option = question.response_options.last
+    response = UserAnswer.create(user_id: current_user.id,
+                                 response_option_id: response_option.id,
+                                 answer_content: params[:response][index])
+  end
+
+  current_user.surveys << survey
+  redirect to '/'
+
+end
+
+get '/survey/:survey_id/results' do #get_results
+  @survey = Survey.find_by_id(params[:survey_id])
+  @questions = @survey.questions
+  erb :'survey/show'
 end
 
 ### MULTI-QUESTION SURVEY

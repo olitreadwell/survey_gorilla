@@ -81,7 +81,7 @@ end
 
 get '/survey/:survey_id/results' do #get_results
   @survey = Survey.find_by_id(params[:survey_id])
-  @questions = @survey.questions
+  # @questions = @survey.questions
   erb :'survey/show'
 end
 

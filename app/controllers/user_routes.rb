@@ -36,7 +36,7 @@ get '/user/:id' do
 end
 
 get '/survey/results/:id' do
-@survey = Survey.find_by_id(:params[:id])
+@survey = Survey.find_by_id(params[:id])
 # @question = Question.find_by_id(params[:id])
 # p @question
   erb :survey_results

@@ -1,2 +1,9 @@
-<%= @question.question_text %>
-<% @question.responses
+<h1><%= @survey.title %></h1><br>
+<% @survey.questions.each do |question| %>
+	<h2><%= question.question_text %></h2><br>
+	<% question.response_options.each do |ro| %>
+		<% ro.user_answers.each do |answer| %>
+			<h3><%= answer.answer_content %></h3><br>
+		<%end%>
+	<%end%>
+<%end%>
